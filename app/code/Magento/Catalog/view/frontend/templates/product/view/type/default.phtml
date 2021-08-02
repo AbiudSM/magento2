@@ -22,6 +22,22 @@
             <?php if ($qty < 51) : ?>
                 <p style="color: red; font-weight: bold;">Pocos productos en stock</p>
             <?php endif; ?>
+
+            <?php
+                $location = $_product->getData('location');
+                echo 'Ubicación: '.$location;
+
+                $location_exoploded = explode(" ", $location);
+                $user_location = @unserialize (file_get_contents('http://ip-api.com/php/'));
+            ?>
+
+            <?php if ($user_location && $user_location['status'] == 'success') :?>
+                <?php if ($user_location['city'] != $location_exoploded[0]) :?>
+                    <p style="color: white; font-weight: bold; background-color:red;padding:10px">Este producto no se encuentra en su ciudad</p>
+                <?php endif; ?>
+            <?php endif; ?>
+            
+
             <!-- End Edited -->
 
         </div>
