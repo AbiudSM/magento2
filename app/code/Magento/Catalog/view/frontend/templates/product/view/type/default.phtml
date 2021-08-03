@@ -32,8 +32,11 @@
             ?>
 
             <?php if ($user_location && $user_location['status'] == 'success') :?>
-                <?php if ($user_location['city'] != $location_exoploded[0]) :?>
-                    <p style="color: white; font-weight: bold; background-color:red;padding:10px">Este producto no se encuentra en su ciudad</p>
+                <!-- $user_location['regionName'] -->
+                <?php if ('N.L.' != $location_exoploded[1]) :?>
+                    <p style="color: white; font-weight: bold; background-color:red;padding:10px">Este producto no se encuentra en su estado</p>
+                <?php elseif ($user_location['city'] != $location_exoploded[0]) :?>
+                    <p style="color: white; font-weight: bold; background-color:orange;padding:10px">Este producto no se encuentra en su ciudad</p>
                 <?php endif; ?>
             <?php endif; ?>
             
